@@ -1,0 +1,13 @@
+{
+  "name": "amqpd",
+  "version": "0.0.0",
+  "description": "MongoClientShark",
+  "main": "app.js",
+  "author": {
+    "name": "Sharkbyteprojects"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.6",
+    "express": "^4.17.1"
+  }
+}

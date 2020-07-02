@@ -1,0 +1,38 @@
+version: "3"
+services:
+  broker:
+    image: rabbitmq:3
+    container_name: broker
+    expose:
+      - 5672
+  sender1:
+    build:
+      context: d1
+    expose:
+      - "8080"
+    depends_on:
+      - broker
+    restart: on-failure
+    links:
+      - broker
+  uploader1:
+    build:
+      context: l1
+    expose:
+      - "8080"
+    depends_on: 
+      - broker
+    restart: on-failure
+    links: 
+      - broker
+  nginx:
+    build:
+      context: ngi
+    ports: 
+      - 80:80
+    depends_on: 
+      - uploader1
+      - sender1
+    links: 
+      - uploader1
+      - sender1
